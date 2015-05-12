@@ -4,8 +4,8 @@ require 'battleships'
 class BattleshipsApp < Sinatra::Base
 set :views, Proc.new { File.join(root, "..", "views") }
 
-  GAME = Game.new Player, Board
-  @@board = GAME.own_board_view GAME.player_1
+  @@game = Game.new Player, Board
+  @board = @@game.own_board_view @@game.player_1
 
   get '/' do
     erb :index
@@ -16,9 +16,9 @@ set :views, Proc.new { File.join(root, "..", "views") }
   end
 
   post '/game' do
-    p GAME
+    p @@game
     @name = params[:name]
-    @@board = GAME.own_board_view GAME.player_1
+    @board = @@game.own_board_view @@game.player_1
     erb :start_game
   end
 
@@ -27,10 +27,10 @@ set :views, Proc.new { File.join(root, "..", "views") }
   end
 
   post '/ship' do
-    p GAME
+    p @@game
     @battleship = params[:coordinate1]
-    GAME.player_1.place_ship Ship.battleship, @battleship, :vertically
-    @@board = GAME.own_board_view GAME.player_1
+    @@game.player_1.place_ship Ship.battleship, @battleship, :vertically
+    @board = @@game.own_board_view @@game.player_1
     erb :ship_placed
   end
 
