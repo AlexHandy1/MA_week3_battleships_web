@@ -7,3 +7,8 @@ Feature: Starting the game
     Given I am on the homepage
     When I follow "New Game"
     Then I should see "What's your name?"
+
+  Scenario: Launching Game
+    Given I have clicked on "New Game"
+    When I submit my name : "Alex"
+    Then I should see my name : "Alex"
