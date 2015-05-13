@@ -25,6 +25,8 @@ set :views, Proc.new { File.join(root, "..", "views") }
 
   post '/ship' do
     #while @@game.player_1.board.ships < 5 do this...
+    #error handling
+    #different size ships
     @battleship = params[:coordinate1]
     @@game.player_1.place_ship Ship.battleship, @battleship, :vertically
     @board = @@game.own_board_view @@game.player_1
@@ -38,6 +40,7 @@ set :views, Proc.new { File.join(root, "..", "views") }
 
   post '/shots' do
     #while @@game.has_winner? == false
+    #error handling
     @shot = params[:shot]
     @@game.player_1.shoot @shot.to_sym
     @opponent_board = @@game.opponent_board_view @@game.player_1
