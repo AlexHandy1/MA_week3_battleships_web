@@ -1,5 +1,5 @@
-Given(/^I have clicked on "([^"]*)"$/) do |/game/new|
-  visit path_to('/game/new')
+Given(/^I have clicked on "([^"]*)"$/) do |arg1|
+  pending
 end
 
 When(/^I submit my name : "([^"]*)"$/) do |arg1|
